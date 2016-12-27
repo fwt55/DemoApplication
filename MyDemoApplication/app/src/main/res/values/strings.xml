@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="chat_dialog_report" formatted="false"><![CDATA[This video may have <font color="#ff0000">illegal content</font>, sure to r this video?]]></string>
+
+    <string name="illegal_video_alert_content" formatted="false"><![CDATA[由于你发送了<font color="#f44336">色情视频</font>给其他用户,并被举报,我们给予你严重的警告处理,请再BIGO LIVE上进行文明交友!<p><p><font color="#000000">详细规则:<br></br></font><br>如果你发送了<font color="#ff0000">色情粗俗、违法歧视、暴力</font>等视频,我们会根据违规次数予以以下处罚:<p><font color="#ff0000">首  次:予以警告</font><br><font color="#ff0000">第二次:封禁一天</font><br><font color="#ff0000">第三次:永久封禁</font>]]></string>
+
+</resources>

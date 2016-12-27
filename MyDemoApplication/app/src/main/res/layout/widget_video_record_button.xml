@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/execute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chat_dialog_report"
+        android:onClick="execute"/>
+
+    <ImageView
+        android:id="@+id/iv_im_record_gift"
+        android:src="@drawable/selector_im_video_select_gift"
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:enabled="true"
+        android:visibility="visible"/>
+
+</RelativeLayout>
