@@ -11,17 +11,9 @@
         android:layout_height="match_parent" />
 
     <FrameLayout
+        android:id="@+id/drawer_party_list_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#50ff0000"
         android:tag="drag_view">
-
-        <Button
-            android:id="@+id/execute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:text="execute"/>
-
     </FrameLayout>
 </com.example.leijianmin.myapplication.houseparty.DropdownLayout>
