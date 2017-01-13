@@ -18,8 +18,6 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
 
-        mTextView = (TextView) findViewById(R.id.text_view);
-        mExecute = (Button) findViewById(R.id.execute);
         init();
 
     }

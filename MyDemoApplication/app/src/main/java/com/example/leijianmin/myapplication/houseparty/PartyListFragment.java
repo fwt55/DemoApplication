@@ -4,11 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.leijianmin.myapplication.R;
+import com.example.leijianmin.myapplication.houseparty.list.PartyListAdapter;
 
 /**
  * Created by leijianmin on 2016/12/26.
@@ -19,6 +23,9 @@ public class PartyListFragment extends Fragment implements View.OnClickListener 
     IPartyListInteraction mInteraction;
 
     View mBottomBar;
+
+    RecyclerView mRecyclerView;
+    PartyListAdapter mAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,8 +35,23 @@ public class PartyListFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mBottomBar = view.findViewById(R.id.bottom_bar);
-
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.party_list);
         mBottomBar.setOnClickListener(this);
+
+        init();
+    }
+
+    private void init() {
+        mAdapter = new PartyListAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        loadData();
+    }
+
+    private void loadData() {
+        mAdapter.setDataSource();
     }
 
     @Override

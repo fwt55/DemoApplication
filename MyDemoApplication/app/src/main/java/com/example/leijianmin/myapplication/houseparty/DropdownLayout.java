@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.example.leijianmin.myapplication.R;
+
 import java.lang.reflect.Field;
 
 /**
@@ -22,6 +24,8 @@ public class DropdownLayout extends FrameLayout {
     private ViewDragHelper mViewDragHelper;
 
     private int mTopBarHeight;
+
+    private IBottomPosListener mBottomPosListener;
 
     public DropdownLayout(Context context) {
         super(context);
@@ -49,6 +53,10 @@ public class DropdownLayout extends FrameLayout {
         mViewDragHelper.setMinVelocity(minVel);
 
         setDragHelperEdgeSize();
+    }
+
+    public void setBottomPosListener(IBottomPosListener listener) {
+        mBottomPosListener = listener;
     }
 
     @Override
@@ -97,11 +105,11 @@ public class DropdownLayout extends FrameLayout {
             int top = 0;
 
             if (offset < -releasedChild.getHeight() / 2) {
-                top = -releasedChild.getHeight() + mTopBarHeight;
+                top = -releasedChild.getHeight();
             }
 
             if (yvel < -mViewDragHelper.getMinVelocity()) {
-                top = -releasedChild.getHeight() + mTopBarHeight;
+                top = -releasedChild.getHeight();
             } else if (yvel > mViewDragHelper.getMinVelocity()) {
                 top = 0;
             }
@@ -126,6 +134,12 @@ public class DropdownLayout extends FrameLayout {
             return child.getHeight();
         }
 
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            if (mBottomPosListener != null) {
+                mBottomPosListener.onChange(top + changedView.getHeight());
+            }
+        }
     }
 
     private View getDragView() {
@@ -162,7 +176,7 @@ public class DropdownLayout extends FrameLayout {
             int top = dragView.getTop();
 
             if (top >= 0) {
-                mViewDragHelper.smoothSlideViewTo(dragView, dragView.getLeft(), -dragView.getHeight() + mTopBarHeight);
+                mViewDragHelper.smoothSlideViewTo(dragView, dragView.getLeft(), -dragView.getHeight());
             } else {
                 mViewDragHelper.smoothSlideViewTo(dragView, dragView.getLeft(), 0);
             }
@@ -170,4 +184,9 @@ public class DropdownLayout extends FrameLayout {
             invalidate();
         }
     }
+
+    public interface IBottomPosListener {
+        void onChange(int bottom);
+    }
+
 }
